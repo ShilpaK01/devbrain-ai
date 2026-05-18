@@ -1,0 +1,57 @@
+import google.generativeai as genai
+
+import os
+
+from dotenv import load_dotenv
+
+
+load_dotenv()
+
+
+genai.configure(
+    api_key=os.getenv("GEMINI_API_KEY")
+)
+
+
+model = genai.GenerativeModel(
+    "gemini-2.5-flash"
+)
+
+
+def generate_ai_response(
+    question: str,
+    chunks
+):
+
+    context = ""
+
+    for chunk in chunks:
+
+        context += f"""
+
+File: {chunk.file_path}
+
+Function: {chunk.function_name}
+
+Code:
+{chunk.code_chunk}
+
+"""
+
+    prompt = f"""
+You are an AI codebase assistant.
+
+Answer the question based on the repository code context below.
+
+Question:
+{question}
+
+Repository Context:
+{context}
+
+Give detailed technical explanation.
+"""
+
+    response = model.generate_content(prompt)
+
+    return response.text
