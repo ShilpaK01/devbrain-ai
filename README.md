@@ -1,80 +1,251 @@
-# DevBrain AI
+DevBrain AI
 
-AI-powered repository analysis system built using FastAPI, LangGraph, Gemini, pgvector, and semantic code retrieval.
+DevBrain AI is a production-ready AI-powered repository analysis platform that enables developers to understand and explore GitHub repositories through natural language. Using Retrieval-Augmented Generation (RAG), semantic code search, and LangGraph orchestration, the system retrieves relevant code from a repository and generates context-aware responses using Google Gemini 2.5 Flash.
 
-## Features
+The project is designed to help developers quickly understand unfamiliar codebases, generate architecture-aware documentation, and answer technical questions without manually navigating thousands of lines of code.
 
-- Repository ingestion from GitHub
-- Semantic code search using embeddings
-- pgvector vector database integration
-- AI-powered documentation agent
+
+Features
+
+- Analyze public GitHub repositories
+- Semantic code search using vector embeddings
+- Conversational repository Q&A powered by Gemini 2.5 Flash
+- AI-generated repository documentation
 - LangGraph workflow orchestration
-- FastAPI backend APIs
-- Gemini 2.5 Flash integration
+- FastAPI REST APIs
+- PostgreSQL + pgvector for vector storage
+- Dockerized backend for easy deployment
 
-## Tech Stack
+---
 
-- FastAPI
-- PostgreSQL
-- pgvector
-- Sentence Transformers
-- Gemini API
-- LangGraph
-- SQLAlchemy
-- Docker
+Tech Stack
 
-## API Endpoints
+| Technology | Purpose |
+|------------|---------|
+| Python | Core programming language |
+| FastAPI | REST API framework |
+| LangGraph | Workflow orchestration |
+| Google Gemini 2.5 Flash | Large Language Model |
+| Sentence Transformers | Embedding generation |
+| PostgreSQL | Database |
+| pgvector | Vector similarity search |
+| SQLAlchemy | ORM |
+| Docker | Containerization |
 
-### Ingest Repository
 
-POST `/ingest`
+System Architecture
+
+                GitHub Repository
+                        │
+                        ▼
+              Repository Ingestion
+                        │
+                        ▼
+               AST Code Chunking
+                        │
+                        ▼
+          Sentence Transformer Embeddings
+                        │
+                        ▼
+             PostgreSQL + pgvector
+                        │
+                        ▼
+               Semantic Retrieval
+                        │
+                        ▼
+               LangGraph Workflow
+                        │
+                        ▼
+            Gemini 2.5 Flash LLM
+                        │
+                        ▼
+              AI Generated Response
+```
+
+---
+
+How It Works
+
+1. Repository Ingestion
+
+The user provides a public GitHub repository URL.
+
+Example:
 
 ```json
 {
-  "repo_url": "https://github.com/pallets/flask"
+    "repo_url":"https://github.com/pallets/flask"
 }
 ```
 
-### Ask Questions
+The application clones the repository and extracts source files for analysis.
 
-POST `/ask`
+
+2. Code Chunking
+
+The repository is divided into meaningful chunks using AST-based parsing to preserve the logical structure of the codebase.
+
+
+3. Embedding Generation
+
+Each code chunk is converted into semantic embeddings using Sentence Transformers.
+
+4. Vector Storage
+
+Generated embeddings are stored in PostgreSQL using the pgvector extension for efficient similarity search.
+
+5. Semantic Retrieval
+
+When a user asks a question, the application retrieves the most relevant code chunks from the vector database.
+
+6. AI Response Generation
+
+The retrieved context is passed to Gemini 2.5 Flash through a LangGraph workflow, which generates accurate and context-aware responses.
+
+---
+
+# API Endpoints
+
+## Repository Ingestion
+
+**POST** `/ingest`
+
+Request
 
 ```json
 {
-  "question": "How routing works?"
+    "repo_url":"https://github.com/pallets/flask"
 }
 ```
 
-### Documentation Agent
+---
 
-POST `/documentation`
+## Ask Questions
+
+**POST** `/ask`
+
+Request
 
 ```json
 {
-  "question": "Explain routing architecture"
+    "question":"How does routing work?"
 }
 ```
 
-## Architecture
+---
 
-1. Repository ingestion
-2. Code chunking
-3. Embedding generation
-4. Vector storage using pgvector
-5. Semantic retrieval
-6. AI response generation using Gemini
-7. LangGraph orchestration
+## Documentation Generator
 
-## Run Locally
+**POST** `/documentation`
+
+Request
+
+```json
+{
+    "question":"Explain the repository architecture."
+}
+```
+
+---
+
+# Project Structure
+
+```
+DevBrain-AI/
+
+│
+├── app/
+│   ├── api/
+│   ├── database/
+│   ├── graph/
+│   ├── models/
+│   ├── services/
+│   ├── embeddings/
+│   └── main.py
+│
+├── requirements.txt
+├── Dockerfile
+├── README.md
+└── .env.example
+```
+
+---
+
+# Installation
+
+## Clone Repository
+
+```bash
+git clone https://github.com/yourusername/devbrain-ai.git
+
+cd devbrain-ai
+```
+
+---
+
+Create Virtual Environment
+
+```bash
+python -m venv venv
+```
+
+Windows
+
+```bash
+venv\Scripts\activate
+```
+
+Linux / Mac
+
+```bash
+source venv/bin/activate
+```
+
+---
+
+Install Dependencies
+
+```bash
+pip install -r requirements.txt
+```
+
+---
+
+Configure Environment Variables
+
+Create a `.env` file.
+
+```env
+DATABASE_URL=postgresql://username:password@localhost/devbrain
+
+GEMINI_API_KEY=your_api_key
+```
+
+---
+
+Run the Application
 
 ```bash
 uvicorn app.main:app --reload
 ```
 
-## Future Improvements
+Swagger UI
 
-- Multi-agent architecture
-- Background ingestion
-- Streaming responses
-- Frontend UI
-- Dockerized backend deployment
+```
+http://localhost:8000/docs
+```
+
+---
+
+Technical Highlights
+
+- Built an end-to-end Retrieval-Augmented Generation (RAG) pipeline for repository analysis.
+- Implemented semantic code retrieval using Sentence Transformers and pgvector.
+- Designed modular LangGraph workflows for retrieval and response generation.
+- Integrated Google Gemini 2.5 Flash for context-aware code explanations.
+- Developed RESTful APIs using FastAPI.
+- Containerized the backend using Docker for deployment.
+- Structured the application using a modular and scalable architecture.
+
+
+
