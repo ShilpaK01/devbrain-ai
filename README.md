@@ -239,5 +239,3 @@ http://localhost:8000/docs
 ---
 
 
-
-Portfolio: https://sanguleakb.github.io
