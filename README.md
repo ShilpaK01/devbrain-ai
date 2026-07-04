@@ -1,4 +1,4 @@
-# 🚀 DevBrain AI
+#  DevBrain AI
 
 **DevBrain AI** is a production-ready AI-powered repository analysis platform that enables developers to understand and explore GitHub repositories through natural language. Using **Retrieval-Augmented Generation (RAG)**, semantic code search, and **LangGraph** orchestration, the system retrieves relevant code from a repository and generates context-aware responses using **Google Gemini 2.5 Flash**.
 
@@ -6,16 +6,16 @@ The project is designed to help developers quickly understand unfamiliar codebas
 
 ---
 
-## ✨ Features
+##  Features
 
-- 📂 Analyze public GitHub repositories
-- 🔍 Semantic code search using vector embeddings
-- 🤖 Conversational repository Q&A powered by Gemini 2.5 Flash
-- 📖 AI-generated repository documentation
-- 🔄 LangGraph workflow orchestration
-- ⚡ FastAPI REST APIs
-- 🗄️ PostgreSQL + pgvector for vector storage
-- 🐳 Dockerized backend for easy deployment
+-  Analyze public GitHub repositories
+-  Semantic code search using vector embeddings
+-  Conversational repository Q&A powered by Gemini 2.5 Flash
+-  AI-generated repository documentation
+-  LangGraph workflow orchestration
+-  FastAPI REST APIs
+-  PostgreSQL + pgvector for vector storage
+-  Dockerized backend for easy deployment
 
 ---
 
@@ -159,28 +159,6 @@ Request
 
 ---
 
-# Project Structure
-
-```
-DevBrain-AI/
-
-│
-├── app/
-│   ├── api/
-│   ├── database/
-│   ├── graph/
-│   ├── models/
-│   ├── services/
-│   ├── embeddings/
-│   └── main.py
-│
-├── requirements.txt
-├── Dockerfile
-├── README.md
-└── .env.example
-```
-
----
 
 # Installation
 
@@ -260,53 +238,6 @@ http://localhost:8000/docs
 
 ---
 
-# Future Improvements
 
-- Multi-agent repository analysis
-- Streaming responses
-- Background repository indexing
-- Authentication and user management
-- Repository visualization dashboard
-- Support for private GitHub repositories
-- Frontend interface using React or Next.js
-- Evaluation pipeline for response quality
-
----
-
-# Screenshots
-
-> Add screenshots here.
-
-- Repository Ingestion
-- Swagger API
-- Ask Question
-- Documentation Generation
-
----
-
-# Demo
-
-> Add a GIF or short screen recording demonstrating:
-
-- Repository ingestion
-- Asking repository questions
-- Generated responses
-- Documentation generation
-
----
-
-# License
-
-This project is licensed under the MIT License.
-
----
-
-# Author
-
-**Shilpa K**
-
-AI Engineer | Generative AI | FastAPI | LangGraph | RAG | Multi-Agent Systems
-
-GitHub: https://github.com/yourusername
 
 Portfolio: https://sanguleakb.github.io
